@@ -59,7 +59,7 @@ bash install.sh
    bash start-ai.sh
 
    
-  #Usage
+# Usage
   
 Terminal Mode: bash start-ai.sh
 
@@ -68,3 +68,13 @@ Web Interface (Recommended): Run bash scripts/setup-webui.sh then follow the ins
 Image Generation: bash scripts/image-gen.sh "your prompt here"
 
 RAG Queries: python scripts/rag_query.py "Your question"
+
+
+# Customization
+
+Edit config/Modelfile to adjust personality and parameters, then rebuild:
+```bash
+ollama create myai -f config/Modelfile
+
+
+
