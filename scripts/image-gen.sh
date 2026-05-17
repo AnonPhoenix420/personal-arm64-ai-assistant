@@ -1,43 +1,45 @@
 #!/bin/bash
 # scripts/image-gen.sh
-# Image generation wrapper for stable-diffusion.cpp
+# Professional image generation wrapper for stable-diffusion.cpp
 
 if [ -z "$1" ]; then
-    echo "Usage: bash $0 \"Your detailed image prompt here\""
-    echo "Example: bash $0 \"a cyberpunk city at night, neon lights, highly detailed\""
+    echo "Usage: bash scripts/image-gen.sh \"Your detailed prompt\""
+    echo "Example: bash scripts/image-gen.sh \"futuristic cyberpunk city at night, neon lights, highly detailed, 8k\""
     exit 1
 fi
 
 PROMPT="$1"
-TIMESTAMP=$(date +%s)
 OUTPUT_DIR="$HOME/storage/downloads"
-OUTPUT_FILE="ai_image_${TIMESTAMP}.png"
+TIMESTAMP=$(date +%s)
+OUTPUT_FILE="elite_ai_image_${TIMESTAMP}.png"
 
 mkdir -p "$OUTPUT_DIR"
 
-echo "Generating image with prompt: $PROMPT"
-echo "This may take several minutes on mobile hardware..."
+echo "========================================================================"
+echo "Elite AI Image Generation"
+echo "Prompt: $PROMPT"
+echo "========================================================================"
 
 cd stable-diffusion.cpp/build/bin 2>/dev/null || {
-    echo "❌ Error: stable-diffusion.cpp build not found."
-    echo "Please run install.sh first."
+    echo "❌ stable-diffusion.cpp not found. Please run install.sh first."
     exit 1
 }
 
-# Run generation
 ./sd -m ../../models/sd-v1-4.ckpt \
      --prompt "$PROMPT" \
      --n 1 \
-     --output "$OUTPUT_FILE" \
-     --size 512x512 2>/dev/null || {
-    echo "❌ Generation failed. Check if model exists."
+     --size 512x512 \
+     --output "$OUTPUT_FILE" || {
+    echo "❌ Image generation failed."
     exit 1
 }
 
 if [ -f "$OUTPUT_FILE" ]; then
     mv "$OUTPUT_FILE" "$OUTPUT_DIR/"
     echo "✅ Image successfully generated and saved to Downloads folder:"
-    echo "\( OUTPUT_DIR/ai_image_ \){TIMESTAMP}.png"
+    echo "$OUTPUT_DIR/$OUTPUT_FILE"
 else
     echo "❌ Image file was not created."
 fi
+
+echo "========================================================================"
