@@ -1,8 +1,10 @@
 #!/bin/bash
 # scripts/setup-rag.sh
-# Setup Retrieval-Augmented Generation (RAG) for self-learning
+# Professional RAG setup for self-learning and knowledge retrieval
 
-echo "=== Setting up RAG Knowledge Base ==="
+echo "========================================================================"
+echo "Elite Personal AI - RAG (Self-Learning) Setup"
+echo "========================================================================"
 
 pip install --upgrade langchain langchain-community chromadb sentence-transformers pypdf
 
@@ -11,7 +13,7 @@ mkdir -p config/rag config/rag_db
 cat > scripts/rag_query.py << 'EOF'
 #!/usr/bin/env python3
 """
-RAG Query Tool - Query your personal documents
+Elite AI RAG Query Tool
 Usage: python scripts/rag_query.py "Your question here"
 """
 
@@ -21,36 +23,37 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_community.vectorstores import Chroma
 
-def load_and_query(question):
-    loader = DirectoryLoader('config/rag', glob="**/*.*", 
-                           loader_cls=PyPDFLoader, loader_kwargs={"extract_images": False})
+def query_knowledge_base(question: str):
+    loader = DirectoryLoader('config/rag', glob="**/*.*", loader_cls=PyPDFLoader)
     docs = loader.load()
     
     if not docs:
-        print("No documents found in config/rag/")
+        print("No documents found in config/rag/. Add PDFs, TXT, or MD files.")
         return
     
-    text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
-    texts = text_splitter.split_documents(docs)
+    splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
+    texts = splitter.split_documents(docs)
     
     embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
     db = Chroma.from_documents(texts, embeddings, persist_directory="config/rag_db")
     
-    results = db.similarity_search(question, k=4)
+    results = db.similarity_search(question, k=5)
     
-    print(f"\nRelevant information from your documents for: '{question}'\n")
+    print(f"\n=== Relevant Knowledge for: '{question}' ===\n")
     for i, doc in enumerate(results, 1):
-        print(f"[{i}] {doc.page_content[:400]}...\n")
+        print(f"[{i}] {doc.page_content[:450]}...\n")
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
         print("Usage: python scripts/rag_query.py \"Your question\"")
         sys.exit(1)
-    load_and_query(sys.argv[1])
+    query_knowledge_base(sys.argv[1])
+
 EOF
 
 chmod +x scripts/rag_query.py
 
-echo "✅ RAG setup complete."
-echo "Place your PDF, TXT, and Markdown files in: config/rag/"
-echo "Query them using: python scripts/rag_query.py \"What is my project about?\""
+echo "✅ RAG system initialized."
+echo "Place your documents in: config/rag/"
+echo "Query them using: python scripts/rag_query.py \"question\""
+echo "========================================================================"
