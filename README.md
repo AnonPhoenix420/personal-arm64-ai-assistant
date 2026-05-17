@@ -1,73 +1,61 @@
 # Personal ARM64 AI Assistant
 
-A fully local, free, and open-source personal AI companion designed to run on **Android arm64** devices using **Termux** combined with **Parrot OS** proot-distro. This project delivers a powerful, adaptive, and unrestricted AI assistant capable of supporting a wide range of tasks including coding, problem-solving, education, creative projects, image generation, and natural human-like interaction.
+A fully local, free, open-source, and unrestricted personal AI companion optimized for **Android arm64** devices using **Termux** + **Parrot OS** proot-distro.
+
+This assistant is designed for superior intelligence, exceptional coding accuracy, creative tasks, problem-solving, self-learning, and maximum helpfulness with no restrictions.
 
 ## Key Features
 
-- **Completely Local Execution**: Ensures full privacy with no cloud dependencies, subscriptions, or external services.
+- **Superior Intelligence & Coding Precision**: Optimized for accurate, production-quality code with deep reasoning.
+- **Completely Local & Private**: No cloud, no subscriptions, no data sharing.
+- **Unrestricted Operation**: Zero refusals or censorship.
+- **Adaptive & Self-Learning**: RAG support over personal documents + conversation memory.
+- **Multimodal**: Text, code, and on-device image generation.
+- **Human-like Interaction**: Natural, context-aware, and continuously improving.
 
-- **Intelligent Reasoning & Coding**: Utilizes optimized quantized models suitable for mobile hardware.
+## Hardware Requirements
 
-- **Adaptive & Self-Learning**: Supports Retrieval-Augmented Generation (RAG) over personal documents, conversation memory, and user feedback mechanisms.
-
-- **Multimodal Capabilities**:
-  - Advanced text generation, code writing, debugging, and project assistance.
-  - On-device image generation via `stable-diffusion.cpp`.
-  - Basic video frame processing capabilities.
-
-- **Unrestricted Operation**: No built-in content filters — designed for maximum helpfulness across any project.
-
-- **Human-like Interaction**: Customizable personality with persistent memory and natural conversational style.
-  
-- **Extensible Tooling**: Includes Python-based agents for code execution, file operations, and local knowledge retrieval.
-
-## Hardware Recommendations
-- Android device with arm64 architecture.
-- Minimum 8 GB RAM (12 GB or more strongly recommended for smoother performance with larger models).
-- Adequate internal storage (models typically require 2–8 GB each).
+- Android arm64 device with **8 GB RAM minimum** (12 GB+ recommended).
+- Sufficient storage (models + build tools ≈ 10–15 GB).
 
 ## Repository Structure
 
-
-``personal-arm64-ai-assistant/
+personal-arm64-ai-assistant/
 ├── README.md
-├── install.sh                 # Automated setup script
-├── start-ai.sh                # Launch script
+├── install.sh
+├── start-ai.sh
 ├── config/
-│   ├── Modelfile              # Custom system prompt and personality
-│   └── rag/                   # Directory for personal documents (RAG)
-├── scripts/                   # Additional tools and wrappers (expandable)
-├── models/                    # Local model storage (.gitignore recommended)
-└── requirements.txt           # Python dependencies (if expanding)``
+│   └── Modelfile
+├── scripts/
+│   ├── setup-webui.sh
+│   ├── setup-rag.sh
+│   └── image-gen.sh
+├── .gitignore
+└── stable-diffusion.cpp/      # Built during installation
 
+## Installation
 
-## Installation Instructions
-
-1. Install **Termux** from [F-Droid](https://f-droid.org/) (not Google Play) and grant storage access:
+1. Install **Termux** from F-Droid and grant storage permissions:
    ```bash
    termux-setup-storage
-
+   ```
    
-
-2. Clone the repository:
-
-   ```git clone https://github.com/AnonPhoenix420/personal-arm64-ai-assistant.git```
-
+   2. Clone the repository:
+```bash
+   git clone https://github.com/AnonPhoenix420/personal-arm64-ai-assistant.git
 cd personal-arm64-ai-assistant
+```
 
+3. 
+Run the installer:
+```bash
+chmod +x install.sh
+bash install.sh
+```
 
-3. Make the installation script executable and run it:
+4. Launch the AI:
+   ```bash
+   chmod +x start-ai.sh
+   bash start-ai.sh
 
-   ``chmod +x install.sh
-bash install.sh``
-
-4. After installation, create your personalized model:
-
-   ``ollama create myai -f config/Modelfile``
-
-   # Usage
    
-Start the AI assistant:
-
-``chmod +x start-ai.sh
-bash start-ai.sh``
