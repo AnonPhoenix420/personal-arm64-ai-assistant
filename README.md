@@ -56,12 +56,12 @@ A fully local, free, and open-source personal AI companion designed to run on **
 cd personal-arm64-ai-assistant
 
 
-4. Make the installation script executable and run it:
+3. Make the installation script executable and run it:
 
    ``chmod +x install.sh
 bash install.sh``
 
-5. After installation, create your personalized model:
+4. After installation, create your personalized model:
 
    ``ollama create myai -f config/Modelfile``
 
