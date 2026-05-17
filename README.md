@@ -1,2 +1,24 @@
-# personal-arm64-ai-assistant
-Personal AI Assistant Setup for Termux + Parrot OS (arm64) # Free, open-source, fully local.
+# Personal ARM64 AI Assistant
+
+A fully local, free, and open-source personal AI companion designed to run on **Android arm64** devices using **Termux** combined with **Parrot OS** proot-distro. This project delivers a powerful, adaptive, and unrestricted AI assistant capable of supporting a wide range of tasks including coding, problem-solving, education, creative projects, image generation, and natural human-like interaction.
+
+## Key Features
+
+- **Completely Local Execution**: Ensures full privacy with no cloud dependencies, subscriptions, or external services.
+- **Intelligent Reasoning & Coding**: Utilizes optimized quantized models suitable for mobile hardware.
+- **Adaptive & Self-Learning**: Supports Retrieval-Augmented Generation (RAG) over personal documents, conversation memory, and user feedback mechanisms.
+- **Multimodal Capabilities**:
+  - Advanced text generation, code writing, debugging, and project assistance.
+  - On-device image generation via `stable-diffusion.cpp`.
+  - Basic video frame processing capabilities.
+- **Unrestricted Operation**: No built-in content filters — designed for maximum helpfulness across any project.
+- **Human-like Interaction**: Customizable personality with persistent memory and natural conversational style.
+- **Extensible Tooling**: Includes Python-based agents for code execution, file operations, and local knowledge retrieval.
+
+## Hardware Recommendations
+
+- Android device with arm64 architecture.
+- Minimum 8 GB RAM (12 GB or more strongly recommended for smoother performance with larger models).
+- Adequate internal storage (models typically require 2–8 GB each).
+
+## Repository Structure
