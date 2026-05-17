@@ -22,3 +22,46 @@ A fully local, free, and open-source personal AI companion designed to run on **
 - Adequate internal storage (models typically require 2–8 GB each).
 
 ## Repository Structure
+
+
+personal-arm64-ai-assistant/
+├── README.md
+├── install.sh                 # Automated setup script
+├── start-ai.sh                # Launch script
+├── config/
+│   ├── Modelfile              # Custom system prompt and personality
+│   └── rag/                   # Directory for personal documents (RAG)
+├── scripts/                   # Additional tools and wrappers (expandable)
+├── models/                    # Local model storage (.gitignore recommended)
+└── requirements.txt           # Python dependencies (if expanding)
+
+
+## Installation Instructions
+
+1. Install **Termux** from [F-Droid](https://f-droid.org/) (not Google Play) and grant storage access:
+   ```bash
+   termux-setup-storage
+
+   
+
+2. Clone the repository:
+
+   ``git clone https://github.com/AnonPhoenix420/personal-arm64-ai-assistant.git``
+   
+``cd personal-arm64-ai-assistant``
+
+4. Make the installation script executable and run it:
+
+   ``chmod +x install.sh
+bash install.sh``
+
+5. After installation, create your personalized model:
+
+   ``ollama create myai -f config/Modelfile``
+
+   # Usage
+   
+Start the AI assistant:
+
+``chmod +x start-ai.sh
+bash start-ai.sh``
