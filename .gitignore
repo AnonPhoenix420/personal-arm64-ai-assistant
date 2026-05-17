@@ -1,0 +1,5 @@
+models/
+stable-diffusion.cpp/
+config/rag_db/
+*.ckpt
+*.gguf
