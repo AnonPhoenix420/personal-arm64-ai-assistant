@@ -59,3 +59,12 @@ bash install.sh
    bash start-ai.sh
 
    
+  #Usage
+  
+Terminal Mode: bash start-ai.sh
+
+Web Interface (Recommended): Run bash scripts/setup-webui.sh then follow the instructions.
+
+Image Generation: bash scripts/image-gen.sh "your prompt here"
+
+RAG Queries: python scripts/rag_query.py "Your question"
