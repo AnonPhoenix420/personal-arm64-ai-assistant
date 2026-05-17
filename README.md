@@ -39,8 +39,8 @@ personal-arm64-ai-assistant/
    ```bash
    termux-setup-storage
    ```
-   
-   2. Clone the repository:
+
+ 2. Clone the repository:
 ```bash
    git clone https://github.com/AnonPhoenix420/personal-arm64-ai-assistant.git
 cd personal-arm64-ai-assistant
