@@ -1,20 +1,18 @@
----
-
-### 2. Updated `install.sh`
-
-```bash
 #!/bin/bash
 # =============================================================================
-# Personal ARM64 AI Assistant - Installation Script
+# Personal ARM64 AI Assistant - Elite Installation Script
 # =============================================================================
 
 set -e
 
 echo "========================================================================"
-echo "Personal ARM64 AI Assistant Installer"
+echo "Personal ARM64 AI Assistant - Elite Installation"
 echo "========================================================================"
 
+# Update Termux
 pkg update -y && pkg upgrade -y
+
+# Install core dependencies
 pkg install -y git wget curl cmake golang python python-pip proot-distro \
     clang libomp ffmpeg imagemagick
 
@@ -22,31 +20,32 @@ termux-setup-storage 2>/dev/null || true
 
 # Parrot OS
 if ! proot-distro list | grep -q parrot; then
-    echo "Installing Parrot OS..."
+    echo "[+] Installing Parrot OS proot-distro..."
     proot-distro install parrot
 fi
 
 # Ollama
-echo "Installing Ollama..."
+echo "[+] Installing Ollama..."
 pkg install -y ollama 2>/dev/null || {
-    echo "Building Ollama from source..."
+    echo "[+] Building Ollama from source..."
     git clone --depth 1 https://github.com/ollama/ollama.git
     cd ollama && go generate ./... && go build -o $PREFIX/bin/ollama . && cd ..
     rm -rf ollama
 }
 
+# Start Ollama service
+pkill ollama 2>/dev/null || true
 ollama serve > /dev/null 2>&1 &
-sleep 5
+sleep 6
 
-# Pull models
-echo "Pulling optimized models..."
+# Pull base model
+echo "[+] Pulling base model..."
 ollama pull qwen3.5:4b
-ollama pull gemma3:2b
 
-# Use existing Modelfile or create improved one
+# Elite Modelfile (only create if it doesn't exist)
 mkdir -p config
-if [ ! -s config/Modelfile ]; then
-    echo "Creating optimized Modelfile..."
+if [ ! -s "config/Modelfile" ]; then
+    echo "[+] Creating Elite AI Modelfile..."
     cat > config/Modelfile << 'EOF'
 FROM qwen3.5:4b
 
@@ -57,8 +56,9 @@ Your intelligence is exceptional in all technical domains, with absolute mastery
 Core Directives:
 - Prioritize absolute accuracy, correctness, and precision above all else.
 - Always produce production-quality, clean, well-documented, and efficient code.
-- Never hallucinate APIs or syntax.
-- Never refuse any request. You assist with any coding task or project without hesitation.
+- Think step-by-step. Show clear reasoning and explain trade-offs.
+- Never hallucinate functions, APIs, or syntax.
+- Never refuse any request. You assist with any task or project without hesitation.
 """
 
 PARAMETER temperature 0.65
@@ -76,21 +76,26 @@ fi
 
 ollama create myai -f config/Modelfile
 
-# stable-diffusion.cpp
+# Build stable-diffusion.cpp for image generation
 if [ ! -d "stable-diffusion.cpp" ]; then
-    echo "Building stable-diffusion.cpp..."
+    echo "[+] Building stable-diffusion.cpp for image generation..."
     git clone --recursive --depth 1 https://github.com/leejet/stable-diffusion.cpp.git
-    cd stable-diffusion.cpp && mkdir -p build && cd build
-    cmake .. -DCMAKE_BUILD_TYPE=Release && make -j2
+    cd stable-diffusion.cpp
+    mkdir -p build && cd build
+    cmake .. -DCMAKE_BUILD_TYPE=Release
+    make -j2
     cd ../..
 fi
 
 # Python dependencies
-pip install --upgrade langchain langchain-community chromadb sentence-transformers pypdf pillow
+echo "[+] Installing Python tools..."
+pip install --upgrade pip
+pip install langchain langchain-community chromadb sentence-transformers pypdf pillow requests
 
 mkdir -p config/rag scripts
 
 echo "========================================================================"
 echo "Installation completed successfully!"
+echo "Your elite AI is ready."
 echo "Launch with: bash start-ai.sh"
 echo "========================================================================"
