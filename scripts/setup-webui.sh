@@ -1,8 +1,9 @@
 #!/bin/bash
 # scripts/setup-webui.sh
+# Elite AI - Open WebUI Setup for Parrot OS
 
 echo "========================================================================"
-echo "Elite AI - Open WebUI Setup (Inside Parrot OS)"
+echo "Elite Personal AI - Open WebUI Installation"
 echo "========================================================================"
 
 apt install -y python3 python3-pip python3-venv curl
@@ -20,3 +21,5 @@ echo "   source \~/openwebui-env/bin/activate"
 echo "   open-webui serve"
 echo ""
 echo "Access in browser at: http://127.0.0.1:8080"
+echo "Make sure Ollama is running (ollama serve)"
+echo "========================================================================"
