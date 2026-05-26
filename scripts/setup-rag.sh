@@ -1,8 +1,9 @@
 #!/bin/bash
 # scripts/setup-rag.sh
+# Elite AI - RAG Self-Learning Setup
 
 echo "========================================================================"
-echo "Elite AI - RAG Self-Learning Setup"
+echo "Elite Personal AI - RAG Knowledge Base Setup"
 echo "========================================================================"
 
 pip3 install --upgrade langchain langchain-community chromadb sentence-transformers pypdf
@@ -11,6 +12,11 @@ mkdir -p config/rag config/rag_db
 
 cat > scripts/rag_query.py << 'EOF'
 #!/usr/bin/env python3
+"""
+Elite AI RAG Query Tool
+Usage: python scripts/rag_query.py "Your question"
+"""
+
 import sys
 from langchain_community.document_loaders import DirectoryLoader, PyPDFLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
@@ -41,4 +47,7 @@ if __name__ == "__main__":
 EOF
 
 chmod +x scripts/rag_query.py
-echo "RAG setup complete. Add documents to config/rag/"
+echo "✅ RAG setup complete."
+echo "Add your documents (PDF, TXT, MD) to: config/rag/"
+echo "Query with: python scripts/rag_query.py \"Your question\""
+echo "========================================================================"
