@@ -1,8 +1,4 @@
-# =============================================================================
-# Elite Personal ARM64 AI Assistant - .gitignore
-# =============================================================================
-
-# Models and large binary files
+# Models and large files
 models/
 *.gguf
 *.ckpt
@@ -15,46 +11,30 @@ stable-diffusion.cpp/build/
 stable-diffusion.cpp/.git/
 ollama/
 
-# RAG database and temporary files
+# RAG database
 config/rag_db/
-config/rag/*.db
 
 # Python cache
 __pycache__/
 *.pyc
 *.pyo
-*.pyd
 
 # Virtual environments
 venv/
 openwebui-env/
-*.env
 
 # Logs and temporary files
 *.log
-*.tmp
 .DS_Store
 Thumbs.db
 
-# Generated images and outputs
+# Generated images
 *.png
 *.jpg
 *.jpeg
-*.webp
 elite_ai_*.png
-output_*.*
 ai_image_*.png
 
-# Large downloads
-*.tar.gz
-*.zip
-
-# Editor and IDE files
+# Editor files
 .vscode/
 .idea/
-*.swp
-*.swo
-
-# Ollama specific
-.ollama/
-ollama_cache/
