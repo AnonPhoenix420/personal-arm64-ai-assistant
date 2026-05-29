@@ -3,38 +3,24 @@ models/
 *.gguf
 *.ckpt
 *.bin
-*.pth
-*.safetensors
 
-# Build directories
-stable-diffusion.cpp/build/
-stable-diffusion.cpp/.git/
+# Build artifacts
+stable-diffusion.cpp/
 ollama/
 
-# RAG database
+# RAG and cache
 config/rag_db/
-
-# Python cache
 __pycache__/
 *.pyc
-*.pyo
 
 # Virtual environments
 venv/
 openwebui-env/
 
-# Logs and temporary files
+# Logs and temp files
 *.log
 .DS_Store
-Thumbs.db
 
-# Generated images
-*.png
-*.jpg
-*.jpeg
-elite_ai_*.png
-ai_image_*.png
-
-# Editor files
-.vscode/
-.idea/
+# Downloads
+*.tar.zst
+*.tgz
