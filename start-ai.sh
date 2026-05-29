@@ -1,14 +1,13 @@
 #!/bin/bash
 # start-ai.sh
 
-echo "=== Elite Personal ARM64 AI Assistant ==="
+echo "========================================================================"
+echo "                   Phoenix — Supreme God Mode AI                     "
+echo "========================================================================"
 
 if ! pgrep -x "ollama" > /dev/null; then
-    echo "Starting Ollama service..."
     ollama serve > /dev/null 2>&1 &
-    sleep 6
+    sleep 5
 fi
 
-echo "✅ AI is ready. Type 'exit' to quit."
-echo "=========================================="
-ollama run myai
+ollama run phoenix
